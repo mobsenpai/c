@@ -1,29 +1,29 @@
 #include <stdio.h>
 
 int main() {
-  char str[100], a[10];
-  int i, j, k, f;
-  printf("Enter a string: ");
+  char str[100], w[10];
+  int i, j, f;
+  printf("Enter a string and a word:  ");
   fgets(str, 100, stdin);
-  printf("Enter a character: ");
-  scanf("%s", a);
+  scanf("%s", w);
 
   for (i = 0; str[i] != '\0'; i++) {
-    // first index of a matches the first index of str
-    if (str[i] == a[0]) {
+    if (str[i] == w[0]) {
+      // first char matches
       f = 1; // assume match
-      for (k = 0, j = i; a[k] != '\0'; k++, j++) {
-        if (str[j] != a[k]) {
+      for (j = 0; w[j] != '\0'; j++) {
+        if (str[i + j] == '\0' || str[i + j] != w[j]) {
           f = 0;
           break;
         }
       }
+      if (f) {
+        printf("Word found at %d index", i);
+        return 0;
+      }
     }
   }
 
-  if (f) {
-    printf("Word found at %d", i);
-  } else {
-    printf("Word not found");
-  }
+  printf("Word not found");
+  return 0;
 }
